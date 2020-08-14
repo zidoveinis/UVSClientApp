@@ -1,0 +1,12 @@
+.center-of-page {
+    margin: 0 auto;
+    text-align: center;
+}
+.centered-items {
+    align-items: center;
+    display: flex;
+}
+::ng-deep .mat-card-header {
+    margin: 0px;
+    display: inline !important;
+}

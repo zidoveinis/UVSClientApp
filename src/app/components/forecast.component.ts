@@ -1,17 +1,34 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {Forecast} from '../models/forecast'
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { BaseFormComponent } from './base-form-element';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'forecast-component',
+  selector: 'app-forecast-component',
   templateUrl: './forecast.component.html',
-  styleUrls: ['./forecast.component.scss']
+  styleUrls: ['./forecast.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ForecastComponent),
+      multi: true
+    }]
 })
 
-export class ForecastComponent implements OnInit {
+export class ForecastComponent extends BaseFormComponent implements OnInit {
 
-  @Input() image = {} as Forecast;
+  @Input() forecast: any;
+  @Input() cities: any;
 
-    public constructor() {}
+  public constructor() {
+    super();
+  }
+  placeholder: string;
+  city: string;
 
-    ngOnInit() {}
+  ngOnInit(): void {
+    this.placeholder = 'Pasirinkite miestą';
+  }
+  onChanged(event: any): void {
+    this.city = event;
+  }
 }

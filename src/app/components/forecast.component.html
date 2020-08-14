@@ -1,4 +1,36 @@
-  <div class="container">
-    <img src="{{image}}" alt="Girl in a jacket">
-  </div>
-  
+<div class="d-flex justify-content-center center-of-page">
+    <mat-card class="centered-items">
+        <mat-form-field>
+            <mat-select [placeholder]="placeholder" [(ngModel)]="value" (selectionChange)="onChanged($event.value)">
+                <mat-option *ngFor="let city of cities" [value]="city.name">
+                    {{city.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-card>
+    <mat-card *ngIf="forecast">
+        <div>
+            <h1>
+                {{city}} {{forecast.current.temp_c | number:'1.0-0'}}° <img style src="{{forecast.current.condition.icon}}">
+            </h1>
+            <div class="centered-items">
+                <mat-card *ngFor="let day of forecast.forecast">
+                    <mat-card-header>
+                        {{day.date | date:'EEEE':'':'lt'}}
+                    </mat-card-header>
+                    <mat-card-header>
+                        <img style="padding: 15px" src="{{day.day.condition.icon}}">
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            <mat-card-title>{{day.day.maxtemp_c | number:'1.0-0'}}°</mat-card-title>
+                            &nbsp;
+                            <mat-card-title style="color: #bababa;">{{day.day.mintemp_c | number:'1.0-0'}}°
+                            </mat-card-title>
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card>
+</div>

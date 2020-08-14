@@ -4,15 +4,15 @@ export interface Forecast {
 
 export interface Root {
   location: Location;
-  current:  Current;
+  current: Current;
   forecast: Forecast;
-  alert:    string;
+  alert: string;
 }
 
 export interface Current {
-  temp_c:    string;
+  temp_c: string;
   condition: Condition;
-  uv:        string;
+  uv: string;
 }
 
 export interface Condition {
@@ -21,12 +21,13 @@ export interface Condition {
 }
 
 export interface Forecast {
-  forecastday: Forecastday;
+  forecastday: Forecastday[];
 }
 
 export interface Forecastday {
-  date:  Date;
-  day:   Day;
+  date: Date;
+  date_epoch: string;
+  day: Day;
   astro: string;
 }
 
@@ -37,12 +38,12 @@ export interface Day {
 }
 
 export interface Location {
-  name:            string;
-  region:          string;
-  country:         string;
-  lat:             string;
-  lon:             string;
-  tz_id:           string;
+  name: string;
+  region: string;
+  country: string;
+  lat: string;
+  lon: string;
+  tz_id: string;
   localtime_epoch: string;
-  localtime:       string;
+  localtime: string;
 }

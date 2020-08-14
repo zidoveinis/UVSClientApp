@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ForecastService } from './services/forecast.service';
-import { HttpClient } from '@angular/common/http';
-import { Forecast } from './models/forecast';
+import { CitiesService } from './services/cities.service';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +10,23 @@ import { Forecast } from './models/forecast';
 export class AppComponent implements OnInit {
 
   title = 'UVSClientApp';
+  forecast: any;
+  cities: any;
 
-  current: any;
-  image = "//cdn.weatherapi.com/weather/64x64/day/356.png";
-
-  constructor(http: HttpClient,
-    private apiService: ForecastService) {
+  constructor(
+    private apiForecastService: ForecastService,
+    private apiCityService: CitiesService) {
   }
 
-  ngOnInit() {
-
-    this.apiService.getWeatherForecast().subscribe((data: Forecast[]) =>  {
-      console.log(data);
-      this.current = data['current'];
+  ngOnInit(): void {
+    this.apiCityService.getCities().subscribe(data => {
+      this.cities = data;
     });
+  }
+  onSelectedGroupChanged(newgroup): void {
+    this.apiForecastService.getWeatherForecast(newgroup).subscribe(data => {
+      this.forecast = data;
+    });
+
   }
 }
