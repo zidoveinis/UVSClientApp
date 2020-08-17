@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
-import { BaseFormComponent } from './base-form-element';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseFormComponent } from '../base-form-element';
 
 @Component({
   selector: 'app-forecast-component',

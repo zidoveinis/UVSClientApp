@@ -1,0 +1,5 @@
+<div *ngIf="cities">
+    <app-forecast-component (ngModelChange)="onSelectedGroupChanged($event)" [(ngModel)]="cities.name"
+      [forecast]="forecast" [cities]="cities">
+    </app-forecast-component>
+  </div>
