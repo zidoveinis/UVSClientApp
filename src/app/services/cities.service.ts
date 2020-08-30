@@ -10,7 +10,7 @@ export class CitiesService {
   constructor(private httpClient: HttpClient) { }
 
   getCities(): Observable<City[]> {
-    return this.httpClient.get<RootObject>('https://localhost:44313/api/cities').pipe(
+    return this.httpClient.get<RootObject>('https://localhost:44314/api/cities').pipe(
       map(s => s.Cities));
   }
 }

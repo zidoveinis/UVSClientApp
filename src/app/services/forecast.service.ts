@@ -11,6 +11,6 @@ export class ForecastService {
     constructor(private httpClient: HttpClient) { }
 
     getWeatherForecast(city: string): Observable<Forecast[]>  {
-        return this.httpClient.get<Forecast[]>('https://localhost:44313/api/weatherforecast?city=' + city);
+        return this.httpClient.get<Forecast[]>('https://localhost:44314/api/weatherforecast?city=' + city);
       }
 }
